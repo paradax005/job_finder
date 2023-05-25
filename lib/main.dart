@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:job_finder/controllers/onboard_provider.dart';
 import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 import 'constants/app_constants.dart';
+import 'views/ui/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [],
-      child: const MyApp(),
-    ),
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => OnBoardNotifier())
+    ], child: const MyApp()),
   );
 }
 
@@ -37,14 +39,5 @@ class MyApp extends StatelessWidget {
             home: const OnBoardingScreen(),
           );
         });
-  }
-}
-
-class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }
