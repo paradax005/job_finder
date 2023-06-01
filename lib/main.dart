@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:job_finder/controllers/onboard_provider.dart';
+import 'package:job_finder/controllers/zoom_provider.dart';
 import 'package:provider/provider.dart';
-// import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+
+import 'controllers/controller.dart';
 
 import 'constants/app_constants.dart';
+
 import 'views/ui/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => OnBoardNotifier())
-    ], child: const MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => OnBoardNotifier()),
+        ChangeNotifierProvider(create: (context) => LoginNotifier()),
+        ChangeNotifierProvider(create: (context) => SignUpNotifier()),
+        ChangeNotifierProvider(create: (context) => ZoomNotifier()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
