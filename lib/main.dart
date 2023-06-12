@@ -31,21 +31,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        useInheritedMediaQuery: true,
-        designSize: const Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Job Finder',
-            theme: ThemeData(
-              scaffoldBackgroundColor: Color(kLight.value),
-              iconTheme: IconThemeData(color: Color(kDark.value)),
-              primarySwatch: Colors.grey,
-            ),
-            home: const OnBoardingScreen(),
-          );
-        });
+      useInheritedMediaQuery: true,
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Job Finder',
+          theme: ThemeData(
+            scaffoldBackgroundColor: Color(kLight.value),
+            iconTheme: IconThemeData(color: Color(kDark.value)),
+            primarySwatch: Colors.grey,
+          ),
+          home: const OnBoardingScreen(),
+        );
+      },
+    );
   }
 }

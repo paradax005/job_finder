@@ -3,8 +3,8 @@ import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
 
 class CustomOutlineButton extends StatelessWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final String text;
   final void Function()? onTap;
   final Color mainColor;
@@ -12,8 +12,8 @@ class CustomOutlineButton extends StatelessWidget {
 
   const CustomOutlineButton({
     super.key,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     required this.text,
     this.onTap,
     required this.mainColor,
@@ -28,7 +28,7 @@ class CustomOutlineButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          // color: mainColor,
+          color: outlineColor,
           border: Border.all(
             color: mainColor,
             width: 1,

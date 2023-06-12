@@ -21,8 +21,7 @@ class DrawerWidget extends StatelessWidget {
           ),
         ),
         child: Icon(
-          Ionicons.menu,
-          size: 18.w,
+          Icons.more_vert,
         ),
       ),
     );
