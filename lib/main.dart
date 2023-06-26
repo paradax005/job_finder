@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:job_finder/controllers/zoom_provider.dart';
+import 'package:job_finder/views/ui/auth/login_screen.dart';
+import 'package:job_finder/views/ui/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/controller.dart';
 
@@ -10,7 +14,31 @@ import 'constants/app_constants.dart';
 
 import 'views/ui/onboarding/onboarding_screen.dart';
 
-void main() {
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+Widget defaultHome = const OnBoardingScreen();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  HttpOverrides.global = MyHttpOverrides();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  final entrypoint = prefs.getBool('entrypoint') ?? false;
+  final loggedIn = prefs.getBool('loggedIn') ?? false;
+
+  if (entrypoint & !loggedIn) {
+    defaultHome = const LoginPage();
+  } else if (entrypoint & loggedIn) {
+    defaultHome = const MainScreen();
+  }
   runApp(
     MultiProvider(
       providers: [
@@ -44,7 +72,7 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Color(kDark.value)),
             primarySwatch: Colors.grey,
           ),
-          home: const OnBoardingScreen(),
+          home: defaultHome,
         );
       },
     );

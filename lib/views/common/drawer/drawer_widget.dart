@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -20,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.more_vert,
         ),
       ),

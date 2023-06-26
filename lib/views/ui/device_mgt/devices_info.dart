@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/controller.dart';
-import 'package:job_finder/controllers/zoom_provider.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';

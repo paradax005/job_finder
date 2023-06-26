@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(kOrange.value),
+      color: Color(kLightGrey.value),
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
@@ -35,7 +35,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText.toUpperCase(),
           suffixIcon: suffixIcon,
-          hintStyle: appstyle(16, Color(kLight.value), FontWeight.w500),
+          hintStyle: appstyle(16, Color(kDarkGrey.value), FontWeight.w500),
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.zero,
             borderSide: BorderSide(
