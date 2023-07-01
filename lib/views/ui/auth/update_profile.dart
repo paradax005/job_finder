@@ -69,7 +69,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   backgroundColor: Color(kLightBlue.value),
                                   child: const Center(
                                     child: Icon(Icons.photo_filter_rounded),
-                                  ))
+                                  ),
+                                )
                               : CircleAvatar(
                                   radius: 28.r,
                                   backgroundImage:

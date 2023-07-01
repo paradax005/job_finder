@@ -13,6 +13,7 @@ class ProfileResponse {
     final List<String> skills;
     final String profile;
     final String location;
+    final String phone;
 
     ProfileResponse({
         required this.id,
@@ -23,6 +24,7 @@ class ProfileResponse {
         required this.skills,
         required this.profile,
         required this.location,
+        required this.phone,
     });
 
     factory ProfileResponse.fromJson(Map<String, dynamic> json) => ProfileResponse(
@@ -34,6 +36,7 @@ class ProfileResponse {
         skills: List<String>.from(json["skills"].map((x) => x)),
         profile: json["profile"],
         location: json["location"],
+        phone: json["phone"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -45,5 +48,6 @@ class ProfileResponse {
         "skills": List<dynamic>.from(skills.map((x) => x)),
         "profile": profile,
         "location": location,
+        "phone": phone,
     };
 }

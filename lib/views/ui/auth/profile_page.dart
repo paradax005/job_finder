@@ -2,12 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/controller.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
+import 'package:job_finder/views/ui/auth/update_user_info.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/app_bar.dart';
@@ -67,9 +69,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Radius.circular(20),
                                   ),
                                   child: CachedNetworkImage(
-                                      width: 80.w,
-                                      height: 100.h,
-                                      imageUrl: userData!.profile),
+                                    width: 80.w,
+                                    height: 100.h,
+                                    imageUrl: userData!.profile,
+                                  ),
                                 ),
                                 const WidthSpacer(width: 20),
                                 Column(
@@ -103,7 +106,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(
+                                  () => UpdateUserInfo(
+                                    userData: userData,
+                                  ),
+                                );
+                              },
                               child: const Icon(
                                 Feather.edit,
                                 size: 18,
@@ -178,7 +187,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: ReusableText(
-                            text: userData?.email ?? "",
+                            text: userData.email,
                             style: appstyle(
                                 16, Color(kDark.value), FontWeight.w600),
                           ),
@@ -221,7 +230,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     horizontal: 8.w, vertical: 8.h),
                                 child: ListView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: userData?.skills.length,
+                                  itemCount: userData.skills.length,
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: EdgeInsets.all(8.w),
@@ -232,7 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         height: height * 0.06,
                                         color: Color(kLight.value),
                                         child: ReusableText(
-                                          text: userData?.skills[index] ?? "",
+                                          text: userData.skills[index],
                                           style: appstyle(
                                             16,
                                             Color(kDark.value),
