@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.topRight,
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => const RegistrationPage());
+                        Get.offAll(() => const RegistrationPage());
                       },
                       child: ReusableText(
                         text: "Register",
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                   const HeightSpacer(size: 50),
                   CustomButton(
                     onTap: () {
-                      if (loginNotifier.validateFormAndSave()) {
+                      if (loginNotifier.validateFormAndSave(loginNotifier.loginFormKey)) {
                         LoginRequestModel model = LoginRequestModel(
                             email: email.text, password: password.text);
                         loginNotifier.userLogin(model);

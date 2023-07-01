@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:job_finder/firebase_options.dart';
 import 'package:job_finder/views/ui/auth/login_screen.dart';
+import 'package:job_finder/views/ui/auth/update_profile.dart';
 import 'package:job_finder/views/ui/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -27,6 +30,8 @@ Widget defaultHome = const OnBoardingScreen();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   HttpOverrides.global = MyHttpOverrides();
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -46,6 +51,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
         ChangeNotifierProvider(create: (context) => SignUpNotifier()),
         ChangeNotifierProvider(create: (context) => ZoomNotifier()),
+        ChangeNotifierProvider(create: (context) => ImageHelper()),
+        ChangeNotifierProvider(create: (context) => ProfileNotifier()),
       ],
       child: const MyApp(),
     ),

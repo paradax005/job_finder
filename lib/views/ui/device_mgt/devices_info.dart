@@ -75,12 +75,13 @@ class DeviceManagement extends StatelessWidget {
                   onTap: () {
                     zoomNotifier.currentIndex = 0;
                     onBoardNotifier.isLastPage = false;
-                    Get.to(() => const OnBoardingScreen());
+                    loginNotifier.logout();
+                    Get.offAll(() => const OnBoardingScreen());
                   },
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ReusableText(
-                      text: "Sign Out from all devices",
+                      text: "Sign Out From All Devices",
                       style:
                           appstyle(16, Color(kOrange.value), FontWeight.w600),
                     ),

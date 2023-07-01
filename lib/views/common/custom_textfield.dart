@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/views/common/app_style.dart';
 
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 55.h,
       color: Color(kLightGrey.value),
       child: TextFormField(
         controller: controller,
@@ -35,7 +37,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText.toUpperCase(),
           suffixIcon: suffixIcon,
-          hintStyle: appstyle(16, Color(kDarkGrey.value), FontWeight.w500),
+          hintStyle: appstyle(12.sp, Color(kDarkGrey.value), FontWeight.w400),
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.zero,
             borderSide: BorderSide(

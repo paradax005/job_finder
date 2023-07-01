@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
+import 'package:job_finder/models/request/auth/update_profile_model.dart';
 import 'package:job_finder/services/helpers/auth_helper.dart';
 import 'package:job_finder/views/ui/auth/update_profile.dart';
 import 'package:job_finder/views/ui/main_screen.dart';
@@ -56,9 +57,10 @@ class LoginNotifier extends ChangeNotifier {
 
   /// Validate Form
   final loginFormKey = GlobalKey<FormState>();
+  final profileFormKey = GlobalKey<FormState>();
 
-  bool validateFormAndSave() {
-    final form = loginFormKey.currentState;
+  bool validateFormAndSave(GlobalKey<FormState> formState) {
+    final form = formState.currentState;
 
     if (form!.validate()) {
       form.save();
@@ -93,6 +95,33 @@ class LoginNotifier extends ChangeNotifier {
 
     await prefs.remove('token');
     await prefs.setBool("loggedIn", false);
-    _firstTime = false; 
+    _firstTime = false;
+  }
+
+  /// Update Profile
+  updateProfile(ProfileUpdateRequest profile) async {
+    AuthHelper.updateProfile(profile).then((response) {
+      if (response) {
+        Get.snackbar(
+          "Profile Update",
+          "Enjoy Your Search for a Job",
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kLightBlue.value),
+          icon: const Icon(Icons.add_alert),
+        );
+
+        Future.delayed(const Duration(seconds: 3)).then((value) {
+          Get.offAll(() => const MainScreen());
+        });
+      } else {
+        Get.snackbar(
+          "Updating Failed",
+          "Please try again",
+          colorText: Color(kLight.value),
+          backgroundColor: Colors.red,
+          icon: const Icon(Icons.add_alert),
+        );
+      }
+    });
   }
 }
