@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
+import 'package:job_finder/controllers/controller.dart';
 import 'package:job_finder/controllers/jobs_provider.dart';
+import 'package:job_finder/models/request/bookmark/bookmark_req.dart';
 import 'package:job_finder/views/common/app_bar.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/custom_outline_button.dart';
@@ -37,11 +39,27 @@ class _JobPageState extends State<JobPage> {
             preferredSize: Size.fromHeight(50.h),
             child: CustomAppBar(
               title: widget.title,
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 12.0),
-                  child: Icon(Entypo.bookmark),
-                ),
+              actions: [
+                Consumer<BookMarkNotifier>(
+                    builder: (context, bookmarkNotifier, child) {
+                  return InkWell(
+                    onTap: () {
+                      if (bookmarkNotifier.jobs.contains(widget.id)) {
+                        bookmarkNotifier.deleteBookMark(widget.id);
+                      } else {
+                        BookmarkRequest bookmark =
+                            BookmarkRequest(job: widget.id);
+                        bookmarkNotifier.addBookMark(bookmark, widget.id);
+                      }
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 12.w),
+                      child: !bookmarkNotifier.jobs.contains(widget.id)
+                          ? const Icon(Fontisto.bookmark)
+                          : const Icon(Fontisto.bookmark_alt),
+                    ),
+                  );
+                }),
               ],
               child: InkWell(
                 onTap: () => Get.back(),

@@ -53,6 +53,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ImageHelper()),
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
         ChangeNotifierProvider(create: (context) => JobsNotifier()),
+        ChangeNotifierProvider(create: (context) => BookMarkNotifier()),
       ],
       child: const MyApp(),
     ),
