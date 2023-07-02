@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:job_finder/constants/app_constants.dart';
+import 'package:job_finder/models/response/jobs/job_response.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
@@ -9,10 +10,12 @@ import 'package:job_finder/views/common/width_spacer.dart';
 
 class JobHorizontalTile extends StatelessWidget {
   final void Function()? onTap;
+  final JobsResponse job;
 
   const JobHorizontalTile({
     super.key,
     this.onTap,
+    required this.job,
   });
 
   @override
@@ -31,12 +34,12 @@ class JobHorizontalTile extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/Facebook.png"),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(job.imageUrl),
                   ),
                   const WidthSpacer(width: 15),
                   ReusableText(
-                    text: "Facebook",
+                    text: job.company,
                     style: appstyle(
                       20,
                       Color(kDark.value),
@@ -47,7 +50,7 @@ class JobHorizontalTile extends StatelessWidget {
               ),
               const HeightSpacer(size: 15),
               ReusableText(
-                text: "Senior Flutter developer",
+                text: job.title,
                 style: appstyle(
                   20,
                   Color(kDark.value),
@@ -55,7 +58,7 @@ class JobHorizontalTile extends StatelessWidget {
                 ),
               ),
               ReusableText(
-                text: "Washington DC",
+                text: job.location,
                 style: appstyle(
                   16,
                   Color(kDarkGrey.value),
@@ -69,17 +72,17 @@ class JobHorizontalTile extends StatelessWidget {
                   Row(
                     children: [
                       ReusableText(
-                        text: "15K",
+                        text: job.salary,
                         style: appstyle(
-                          23,
+                          16,
                           Color(kDark.value),
                           FontWeight.w600,
                         ),
                       ),
                       ReusableText(
-                        text: "/monthly",
+                        text: "/${job.period}",
                         style: appstyle(
-                          23,
+                          14,
                           Color(kDarkGrey.value),
                           FontWeight.w600,
                         ),

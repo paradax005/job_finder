@@ -105,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ],
                             ),
-                            GestureDetector(
+                            InkWell(
                               onTap: () {
                                 Get.to(
                                   () => UpdateUserInfo(
@@ -202,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: ReusableText(
-                            text: "+216 29 852 228",
+                            text: "+216 ${userData.phone}",
                             style: appstyle(
                                 16, Color(kDark.value), FontWeight.w600),
                           ),

@@ -39,6 +39,7 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
   void initState() {
     super.initState();
     location.text = widget.userData.location;
+    phone.text = widget.userData.phone;
     skill0.text = widget.userData.skills[0];
     skill1.text = widget.userData.skills[1];
     skill2.text = widget.userData.skills[2];
@@ -60,7 +61,6 @@ class _UpdateUserInfoState extends State<UpdateUserInfo> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.userData);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.h),

@@ -9,4 +9,5 @@ class ZoomNotifier extends ChangeNotifier {
     _currentIndex = value;
     notifyListeners();
   }
+
 }

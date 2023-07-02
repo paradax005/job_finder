@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:job_finder/constants/app_constants.dart';
+import 'package:job_finder/models/response/jobs/job_response.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
 
 class VerticalTileWidget extends StatelessWidget {
   final void Function()? onTap;
+  final JobsResponse job;
 
   const VerticalTileWidget({
     super.key,
     this.onTap,
+    required this.job,
   });
 
   @override
@@ -35,8 +38,7 @@ class VerticalTileWidget extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Color(kLightGrey.value),
                       radius: 30,
-                      backgroundImage:
-                          const AssetImage("assets/images/slack.png"),
+                      backgroundImage: NetworkImage(job.imageUrl),
                     ),
                     const WidthSpacer(width: 10),
                     Column(
@@ -44,17 +46,17 @@ class VerticalTileWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ReusableText(
-                          text: "Slack",
+                          text: job.company,
                           style: appstyle(
-                            20,
+                            18,
                             Color(kDark.value),
                             FontWeight.w600,
                           ),
                         ),
                         ReusableText(
-                          text: "Django Developer",
+                          text: job.title,
                           style: appstyle(
-                            20,
+                            16,
                             Color(kDarkGrey.value),
                             FontWeight.w600,
                           ),
@@ -77,17 +79,17 @@ class VerticalTileWidget extends StatelessWidget {
               child: Row(
                 children: [
                   ReusableText(
-                    text: "20K",
+                    text: job.salary,
                     style: appstyle(
-                      23,
+                      16,
                       Color(kDark.value),
                       FontWeight.w600,
                     ),
                   ),
                   ReusableText(
-                    text: "/monthly",
+                    text: "/${job.period}",
                     style: appstyle(
-                      23,
+                      14,
                       Color(kDarkGrey.value),
                       FontWeight.w600,
                     ),

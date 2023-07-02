@@ -77,7 +77,6 @@ class ImageHelper extends ChangeNotifier {
 
     notifyListeners();
 
-    print(imageUrl);
     return imageUrl;
   }
 }

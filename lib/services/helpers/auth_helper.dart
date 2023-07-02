@@ -84,9 +84,6 @@ class AuthHelper {
       body: jsonEncode(model),
     );
 
-    print(response);
-    print(response.body);
-
     if (response.statusCode == 200) {
       return true;
     } else {

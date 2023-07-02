@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_finder/firebase_options.dart';
 import 'package:job_finder/views/ui/auth/login_screen.dart';
-import 'package:job_finder/views/ui/auth/update_profile.dart';
 import 'package:job_finder/views/ui/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -53,6 +52,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ZoomNotifier()),
         ChangeNotifierProvider(create: (context) => ImageHelper()),
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
+        ChangeNotifierProvider(create: (context) => JobsNotifier()),
       ],
       child: const MyApp(),
     ),
