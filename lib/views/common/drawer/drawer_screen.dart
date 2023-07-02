@@ -27,7 +27,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   Widget build(BuildContext context) {
     return Consumer<ZoomNotifier>(
       builder: (context, zoomNotifier, child) {
-        return GestureDetector(
+        return InkWell(
           onDoubleTap: () {
             ZoomDrawer.of(context)!.toggle();
           },
@@ -86,7 +86,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   Widget drawerItem(IconData icon, String text, int index, Color color) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         widget.indexSetter(index);
       },

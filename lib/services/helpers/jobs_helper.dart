@@ -69,4 +69,24 @@ class JobsHelper {
       throw Exception('Failed to fetch available job');
     }
   }
+
+  /// Search For a Job
+  static Future<List<JobsResponse>> searchJob(String searchQuery) async {
+    Map<String, String> requestHeaders = {
+      "Content-Type": "application/json",
+    };
+
+    var url = Uri.https(Config.apiUrl, "${Config.search}/$searchQuery");
+
+    var response = await client.get(
+      url,
+      headers: requestHeaders,
+    );
+
+    if (response.statusCode == 200) {
+      return jobsResponseFromJson(response.body);
+    } else {
+      throw Exception('Failed to fetch available job');
+    }
+  }
 }

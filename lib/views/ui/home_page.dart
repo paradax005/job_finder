@@ -13,7 +13,6 @@ import 'package:job_finder/views/ui/jobs/jobs_list.dart';
 import 'package:job_finder/views/ui/jobs/widget/job_horizontaltile.dart';
 import 'package:job_finder/views/ui/search/search_page.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../common/heading_widget.dart';
 import '../common/horizontal_shimmer.dart';
