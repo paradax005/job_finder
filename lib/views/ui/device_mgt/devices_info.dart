@@ -70,24 +70,25 @@ class DeviceManagement extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(8.h),
               child: Consumer<LoginNotifier>(
-                  builder: (context, loginNotifier, child) {
-                return GestureDetector(
-                  onTap: () {
-                    zoomNotifier.currentIndex = 0;
-                    onBoardNotifier.isLastPage = false;
-                    loginNotifier.logout();
-                    Get.offAll(() => const OnBoardingScreen());
-                  },
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ReusableText(
-                      text: "Sign Out From All Devices",
-                      style:
-                          appstyle(16, Color(kOrange.value), FontWeight.w600),
+                builder: (context, loginNotifier, child) {
+                  return GestureDetector(
+                    onTap: () {
+                      zoomNotifier.currentIndex = 0;
+                      onBoardNotifier.isLastPage = false;
+                      loginNotifier.logout();
+                      Get.offAll(() => const OnBoardingScreen());
+                    },
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ReusableText(
+                        text: "Sign Out From All Devices",
+                        style:
+                            appstyle(16, Color(kOrange.value), FontWeight.w600),
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                },
+              ),
             )
           ],
         ),

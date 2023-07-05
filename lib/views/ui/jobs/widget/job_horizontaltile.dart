@@ -26,9 +26,14 @@ class JobHorizontalTile extends StatelessWidget {
         padding: EdgeInsets.only(right: 12.w),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          color: Color(kLightGrey.value),
           width: width * .7,
           height: height * .27,
+          decoration: BoxDecoration(
+            color: Color(kLightGrey.value),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.w),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

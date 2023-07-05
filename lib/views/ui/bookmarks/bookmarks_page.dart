@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/bookmark_provider.dart';
+import 'package:job_finder/controllers/controller.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/ui/jobs/widget/job_tile.dart';
 import 'package:provider/provider.dart';

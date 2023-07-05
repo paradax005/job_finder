@@ -93,8 +93,10 @@ class LoginNotifier extends ChangeNotifier {
   logout() async {
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.remove('token');
+    // await prefs.remove('token');
     await prefs.setBool("loggedIn", false);
+    await prefs.remove("userId");
+    await prefs.remove("profile");
     _firstTime = false;
   }
 

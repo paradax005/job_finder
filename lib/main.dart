@@ -54,6 +54,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ProfileNotifier()),
         ChangeNotifierProvider(create: (context) => JobsNotifier()),
         ChangeNotifierProvider(create: (context) => BookMarkNotifier()),
+        ChangeNotifierProvider(create: (context) => ChatNotifier()),
       ],
       child: const MyApp(),
     ),

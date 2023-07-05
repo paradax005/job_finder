@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
-import 'package:job_finder/controllers/jobs_provider.dart';
+import 'package:job_finder/controllers/controller.dart';
 import 'package:job_finder/views/common/app_bar.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/drawer/drawer_widget.dart';
@@ -35,12 +35,35 @@ class _HomePageState extends State<HomePage> {
         child: CustomAppBar(
           title: "Home",
           actions: [
-            Padding(
-              padding: EdgeInsets.all(12.h),
-              child: const CircleAvatar(
-                radius: 15,
-                backgroundImage: AssetImage("assets/images/user.png"),
-              ),
+            Consumer<ProfileNotifier>(
+              builder: (context, profileNotifier, child) {
+                profileNotifier.getProfile();
+                return FutureBuilder(
+                  future: profileNotifier.profile,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Padding(
+                        padding: EdgeInsets.all(12.h),
+                        child: const CircleAvatar(
+                          radius: 15,
+                          backgroundImage: AssetImage("assets/images/user.png"),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("error ${snapshot.error}");
+                    } else {
+                      var url = snapshot.data!.profile;
+                      return Padding(
+                        padding: EdgeInsets.all(12.h),
+                        child: CircleAvatar(
+                          radius: 15,
+                          backgroundImage: NetworkImage(url),
+                        ),
+                      );
+                    }
+                  },
+                );
+              },
             ),
           ],
           child: const DrawerWidget(),

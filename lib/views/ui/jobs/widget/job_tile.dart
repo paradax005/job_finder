@@ -23,7 +23,12 @@ class VerticalTileWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-        color: Color(kLightGrey.value),
+        decoration: BoxDecoration(
+          color: Color(kLightGrey.value),
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.w),
+          ),
+        ),
         width: width,
         height: height * .15,
         child: Column(

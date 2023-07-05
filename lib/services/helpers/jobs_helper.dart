@@ -10,6 +10,7 @@ class JobsHelper {
 
   /// GET JOBS
   static Future<List<JobsResponse>> getJobs() async {
+    print("<<<<<<<<<<<<<<< GET JOBS Methods was called >>>>>>>>>>>>>>>>>");
     Map<String, String> requestHeaders = {
       "Content-Type": "application/json",
     };
@@ -31,6 +32,8 @@ class JobsHelper {
 
   /// GET RECENTLY POSTED JOBS
   static Future<JobsResponse> getRecentlyJobs() async {
+    print(
+        "<<<<<<<<<<<<<<< GET RECENTLY POSTED JOBS Methods was called >>>>>>>>>>>>>>>>>");
     Map<String, String> requestHeaders = {
       "Content-Type": "application/json",
     };
