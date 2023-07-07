@@ -27,7 +27,6 @@ class BookMarkHelper {
     var response = await client.post(url,
         headers: requestHeaders, body: jsonEncode(bookmark));
 
-    print(response.body);
     if (response.statusCode == 201) {
       String bookmarkId = bookMarkResFromJson(response.body).id;
       return [true, bookmarkId];
@@ -80,7 +79,6 @@ class BookMarkHelper {
     );
 
     if (response.statusCode == 200) {
-      print('<<<<<<<< BOOKMARKS Loaded From Server >>>>>>>>>');
       List<AllBookMarkRes> bookmarksList =
           allBookMarkResFromJson(response.body);
       return bookmarksList;

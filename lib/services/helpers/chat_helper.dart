@@ -27,7 +27,6 @@ class ChatHelper {
     var response = await client.post(url,
         headers: requestHeaders, body: jsonEncode(model));
 
-    print(response.body);
     if (response.statusCode == 200) {
       var chatId = initialChatFromJson(response.body).id;
       return [true, chatId];
@@ -51,7 +50,7 @@ class ChatHelper {
 
     var response = await client.get(url, headers: requestHeaders);
 
-    print(response.body);
+    // print(response.body);
     if (response.statusCode == 200) {
       var chatList = getChatsFromJson(response.body);
       return chatList;

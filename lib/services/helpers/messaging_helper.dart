@@ -26,17 +26,20 @@ class MessagingHelper {
     var response = await client.post(url,
         headers: requestHeaders, body: jsonEncode(model));
 
-    print(response.body);
     if (response.statusCode == 200) {
-      var receivedMessage = receivedMessagesFromJson(response.body);
-      return [true, receivedMessage];
+      ReceivedMessages message =
+          ReceivedMessages.fromJson(jsonDecode(response.body));
+
+      Map<String, dynamic> responseMap = jsonDecode(response.body);
+      return [true, message, responseMap];
     } else {
       return [false];
     }
   }
 
   /// Send a message
-  static Future<List<ReceivedMessages>> getMessages(String chatId) async {
+  static Future<List<ReceivedMessages>> getMessages(
+      String chatId, int offset) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final token = prefs.getString("token");
@@ -46,14 +49,14 @@ class MessagingHelper {
       "token": "Bearer $token"
     };
 
-    var url = Uri.https(Config.apiUrl, "${Config.messagingUrl}/$chatId");
+    var url = Uri.https(Config.apiUrl, "${Config.messagingUrl}/$chatId",
+        {"page": offset.toString()});
 
     var response = await client.get(url, headers: requestHeaders);
 
-    print(response.body);
     if (response.statusCode == 200) {
       List<ReceivedMessages> messages = receivedMessagesFromJson(response.body);
-      return messages; 
+      return messages;
     } else {
       throw Exception("Failed to load messages ");
     }

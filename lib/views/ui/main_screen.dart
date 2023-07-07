@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/views/ui/auth/profile_page.dart';
 import 'package:job_finder/views/ui/bookmarks/bookmarks_page.dart';
-import 'package:job_finder/views/ui/chat/chat_page.dart';
+import 'package:job_finder/views/ui/chat/chat_list.dart';
 import 'package:job_finder/views/ui/device_mgt/devices_info.dart';
 
 import 'package:provider/provider.dart';
@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return const HomePage();
       case 1:
-        return const ChatsPage();
+        return const ChatsList();
       case 2:
         return const BookMarkPage();
       case 3:

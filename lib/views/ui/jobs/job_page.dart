@@ -5,13 +5,18 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/controller.dart';
-import 'package:job_finder/controllers/jobs_provider.dart';
 import 'package:job_finder/models/request/bookmark/bookmark_req.dart';
+import 'package:job_finder/models/request/chat/create_chat.dart';
+import 'package:job_finder/models/request/messaging/send_message.dart';
+import 'package:job_finder/services/helpers/auth_helper.dart';
+import 'package:job_finder/services/helpers/chat_helper.dart';
+import 'package:job_finder/services/helpers/messaging_helper.dart';
 import 'package:job_finder/views/common/app_bar.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/custom_outline_button.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
+import 'package:job_finder/views/ui/main_screen.dart';
 import 'package:provider/provider.dart';
 
 class JobPage extends StatefulWidget {
@@ -209,7 +214,25 @@ class _JobPageState extends State<JobPage> {
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 20.h),
                           child: CustomOutlineButton(
-                            onTap: () {},
+                            onTap: () {
+                              CreateChat model =
+                                  CreateChat(userId: job.agentId);
+                              ChatHelper.apply(model).then((response) {
+                                if (response[0]) {
+                                  SendMessage model = SendMessage(
+                                    content:
+                                        "Hello I'm interested in ${job.title} job in ${job.location}",
+                                    chatId: response[1],
+                                    receiver: job.agentId,
+                                  );
+
+                                  MessagingHelper.sendMessage(model)
+                                      .whenComplete(() {
+                                    Get.to(() => const MainScreen());
+                                  });
+                                }
+                              });
+                            },
                             width: width,
                             height: height * .06,
                             text: "Apply Now",
